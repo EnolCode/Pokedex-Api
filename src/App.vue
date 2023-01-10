@@ -1,12 +1,15 @@
 <script setup>
 import Pokemon from './services/apiPokemon.js';
-import { onMounted } from 'vue';
+import { ref, onBeforeMount } from 'vue';
 
-const service = new Pokemon();
-const pokemons = service.getPokemons();
+const service = new Pokemon([]);
 
-onMounted(async()=>{
-    await service.fetchAll()
+let pokemons = ref([]);
+
+onBeforeMount(async()=>{
+    pokemons.value = await service.fetchAll()
+    console.log(pokemons.value);
+
 })
 
 </script>

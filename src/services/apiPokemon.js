@@ -17,7 +17,7 @@ class Pokemon {
             const url = "https://pokeapi.co/api/v2/pokemon/";
             const response = await fetch(url);
             const json = await response.json();
-            this.pokemon.value = await json;  
+            return json.results;  
         } catch (error) {
             console.error(error);
         }
