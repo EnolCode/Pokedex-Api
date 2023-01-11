@@ -12,14 +12,28 @@ onBeforeMount(async()=>{
 
 })
 
+let poke = ref([]);
+  onBeforeMount(async()=>{
+    poke.value = await service.fetchOnePokemon()
+    console.log(poke.abilities);
+  })
+
+
+
 </script>
 
 <template>
   <h1>Pokemons</h1>
-  <ul>
+  <!-- <ul>
     <li v-for="pokemon in pokemons">{{ pokemon }}</li>
+  </ul> -->
+
+  <ul>
+    <li v-for="(poke,index) in pokemons">{{ index }}{{ poke }}</li>
   </ul>
 </template>
+
+
 
 <style scoped>
 

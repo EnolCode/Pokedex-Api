@@ -20,6 +20,21 @@ class Pokemon {
             console.error(error);
         }
     }
-}
 
-export default Pokemon;
+      async  fetchOnePokemon(){
+        try {
+            const urlOnePokemon = "https://pokeapi.co/api/v2/pokemon/1/";
+            const res = await fetch(urlOnePokemon);
+            const jsonData = await res.json();
+            
+            console.log(jsonData);
+        } catch (error) {
+            console.log(error);
+            
+        }
+    }
+}
+    // fetchOnePokemon()
+
+
+export  default Pokemon;
