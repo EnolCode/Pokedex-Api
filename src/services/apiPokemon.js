@@ -1,10 +1,8 @@
-import { ref } from "vue";
-
 class Pokemon {
     #pokemon;
 
     constructor(){
-        this.pokemon = ref([])
+        this.pokemon = [];
     }
 
     getPokemons(){
