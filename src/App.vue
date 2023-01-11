@@ -1,6 +1,8 @@
 <script setup>
 import Pokemon from './services/apiPokemon.js';
 import { ref, onBeforeMount } from 'vue';
+import CardPokemon from './components/CardPokemon.vue';
+
 
 const service = new Pokemon([]);
 
@@ -15,10 +17,12 @@ onBeforeMount(async()=>{
 </script>
 
 <template>
-  <h1>Pokemons</h1>
+  <!-- <h1>Pokemons</h1>
   <ul>
     <li v-for="pokemon in pokemons">{{ pokemon }}</li>
-  </ul>
+  </ul> -->
+
+  <CardPokemon/>
 </template>
 
 <style scoped>
