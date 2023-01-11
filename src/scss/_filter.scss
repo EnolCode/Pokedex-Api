@@ -1,0 +1,66 @@
+@use '@/scss/colors' as c;
+
+.filter{
+    display: flex;
+    width: 60%;
+    justify-content: space-around;
+    background: map-get(c.$colors , "dark-blue" );
+    padding: 1em 0;
+    
+    &__container-search{
+        display: flex;
+        flex-direction: row;
+    }
+
+    &__search{
+        width: 45%;
+        .search__input{
+            background:map-get( c.$colors, "white" );
+            padding: .2em .6em;
+            width: 100%;
+            border-radius: 5px;
+            margin-top: .2em;
+            font-size: 1.5em;
+        }
+
+        .search__title{
+            font-size: 1.5em;
+            color: map-get( c.$colors, "white" );
+        }
+
+        .search__button{
+            padding: .6em .8em ;
+            background: map-get( c.$colors, "orange" );;
+            margin-left: 2em;
+            border-radius: 5px;
+            cursor: pointer;
+            &:hover{
+                opacity: .8;
+            }
+        }
+
+        .icon-search{
+            font-size: 1em;
+            color:  map-get( c.$colors, "white" );
+        }
+    }
+
+    &__type{
+        display: flex;
+        flex-direction: column;
+
+        .type__title{
+            font-size: 1.5em;
+            color:  map-get( c.$colors, "white" );
+        }
+
+        .type__select{
+            padding: .8em;
+            background:  map-get( c.$colors, "green" );
+            color:  map-get( c.$colors, "light-grayish" );
+
+            border-radius: 5px;
+            margin-top: .2em
+        }
+    }
+}

@@ -1,0 +1,18 @@
+@use '@/scss/colors' as c;
+
+.container-cards{
+    width: 60%;
+    margin: 0 auto;
+    background:  map-get( c.$colors, "white" );
+    display: flex;
+    justify-content: center;
+    padding-bottom: 2em;
+    
+    &__wrap{
+        margin-top: 2em;
+        display: grid;
+        width: 80%;
+        grid-template-columns: repeat( auto-fit, minmax(10em, 1fr) );
+        gap: 2em;
+    }
+}
