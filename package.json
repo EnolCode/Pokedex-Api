@@ -6,7 +6,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test:unit": "vitest --environment jsdom --root src/"
+    "test:unit": "vitest --environment jsdom"
   },
   "dependencies": {
     "pinia": "^2.0.28",
@@ -17,6 +17,7 @@
     "@vitejs/plugin-vue": "^4.0.0",
     "@vue/test-utils": "^2.2.6",
     "jsdom": "^20.0.3",
+    "sass": "^1.57.1",
     "vite": "^4.0.0",
     "vitest": "^0.25.6"
   }
