@@ -16,7 +16,7 @@
 <style lang="scss" scoped>
 @use '../scss/colors' as c;
   .card{
-    width: 10em;
+    // width: 10em;
     height: 15em;
     background: red;
      &__container-img{
@@ -42,12 +42,8 @@
         font-size: 0.7em;
         margin-top: 0.3em;
         background: orange;
-
-        
-        
       }
            
-
     }
  }
         

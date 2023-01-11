@@ -1,17 +1,23 @@
 <script setup>
 import Pokemon from '@/services/apiPokemon.js';
-import { ref, onBeforeMount } from 'vue';
+import { ref, onBeforeMount, reactive } from 'vue';
 import CardPokemon from '@/components/CardPokemon.vue';
 
 const service = new Pokemon([]);
 
-let pokemons = ref([]);
+let pokemons = ref({});
 
 onBeforeMount(async()=>{
-    pokemons.value = await service.fetchAll()
-    console.log(pokemons.value);
-
+    pokemons.value = await service.fetchAll();
+    poke.value = await service.fetchOnePokemon();
+    // console.log(poke.value.forms[0].name); // Devuelve name
+    // console.log(poke.value.weight); // Devuelve peso
+    // console.log(poke.value.id); //Devuele el id
+    console.log(poke)
 })
+
+let poke = ref([])
+console.log(poke)
 
 </script>
 
@@ -22,7 +28,6 @@ onBeforeMount(async()=>{
     </header>
 
     <form class="filter" action="#">
-
         <div class="filter__search">
             <label for="search" class="search__title">Nombre o número</label>
             <div class="filter__container-search">
@@ -32,7 +37,7 @@ onBeforeMount(async()=>{
         </div>
 
         <div class="filter__type">
-             <label for="type" class="type__title">Busqueda por tipo</label>
+             <label for="type" class="type__title">Búsqueda por tipo</label>
              <select name="type" id="type" class="type__select">
                 <option value=""  class="type__option" selected>Seleccione el tipo a filtrar</option>
                  <option value=""  class="type__option">Electrico</option>
@@ -42,8 +47,17 @@ onBeforeMount(async()=>{
              </select>
         </div>
     </form>
-<CardPokemon/>
+    <div class="container-cards">
+        <div class="container-cards__wrap">
+            <CardPokemon v-for="pokemon in poke" :key="pokemon.id"/>
+            <!-- <ul>
+                <li v-for="pokemon in poke"> {{ pokemon }}</li>
+            </ul> -->
 
+            <h1>{{ poke.name }}</h1>
+            <img :src="poke.sprites.front_default" alt="">
+        </div>
+    </div>
     <footer class="footer">
         <p class="footer__copy">POKE APaI</p>
     </footer>
@@ -52,75 +66,34 @@ onBeforeMount(async()=>{
 
 <style scoped lang="scss">
 @use '@/scss/colors' as c;
+@use '@/scss/mixins' as m;
+@use '@/scss/container-cards' ;
+@use '@/scss/filter';
 
     main{
-        height: 100vh;
-        display:flex;
-        flex-direction: column;
-        align-items: center;
+      @include m.flex(flex, column, nowrap, auto ,center);
+        background: rgb(58, 56, 56);
     }
 
     .header{
-        margin-bottom: 3em;
+        background: rgb(255, 254, 254);
+        @include m.flex(flex, auto, nowrap, center , auto );
+        width: 60%;
+        padding-bottom: 1em;
         &__img{
+            width: 30%;
         }
     }
 
-    .filter{
-        display: flex;
-        width: 50%;
-        justify-content: space-around;
-        background: map-get(c.$colors , "dark-blue" );
-        
-        &__container-search{
-            display: flex;
-            flex-direction: row;
-        }
-
-        &__search{
-            .search__input{
-                background:white;
-                padding:.6em;
-            }
-
-            .search__title{
-                font-size: 2em;
-                color: white;
-            }
-
-            .search__button{
-                // font-size: 1.8em;
-                padding: .8em;
-                background: orange;
-                margin-left: 2em;
-            }
-
-            .icon-search{
-                font-size: 1.4em;
-                color: white;
-
-            }
-        }
-
-        &__type{
-            display: flex;
-            flex-direction: column;
-
-            .type__title{
-                font-size: 2em;
-                color: white;
-            }
-
-            .type__select{
-                padding: 1em;
-                background: white;
-            }
-        }
-    }
     .footer{
           background: map-get(c.$colors , "dark-blue" );
+          @include m.flex(flex, auto, nowrap, center ,center);
           width: 100% ;
-          position: abolute;
-          bottom: 0;
+          padding: 2em;
+
+          &__copy{
+            color:  map-get( c.$colors, "white" );
+          }
     }
+    
 </style>
