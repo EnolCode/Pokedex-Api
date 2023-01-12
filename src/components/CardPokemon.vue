@@ -10,7 +10,10 @@
             <h2 class="card__container-propertiers__id">001</h2>
             <h1 class="card__container-propertiers__name">Pikachu</h1>
             <p class="card__container-propertiers__type">Electrico</p>
+            <div class="card__container-propertiers__button">
+            <i class="fa-solid fa-plus"></i>
         </div>
+    </div>
     </div>
 </template>
 <style lang="scss" scoped>
@@ -42,6 +45,14 @@
         font-size: 0.7em;
         margin-top: 0.3em;
         background: orange;
+      }
+      &__button{
+        display: flex;
+        align-self: flex-end;
+        background-color: aqua;
+        position: relative;
+        bottom: 15px;
+        padding: 0.1em;
       }
            
     }
