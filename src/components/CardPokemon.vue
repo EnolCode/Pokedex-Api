@@ -1,14 +1,43 @@
 <script setup>
+import { onBeforeMount, ref } from 'vue';
+
+const props = defineProps({
+   name:{
+      type: String
+   },
+   url:{
+      type: String
+   }
+})
+let pokeDetails = ref ({});
+let pokeImg = ref()
+let pokemonId = ref()
+const eso = "officialArtwork";
+// console.log(props.url)
+onBeforeMount(async()=>{
+  const resp = await fetch(props.url)
+  const data = await resp.json() 
+  pokeDetails.value = data
+  pokeImg.value = pokeDetails.value.sprites.other.home.front_default;
+  pokemonId.value = pokeDetails.value.id;
+})
+
+const addIdZeros =  (id) =>{
+  if(id < 10) return   `00${id}`
+  if(id < 100) return   `0${id}`
+  if(id < 1000) return   `${id}`
+}
+
 </script>
 
 <template>
     <div class="card">
         <picture class="card__container-img">
-            <img src="" alt="">
+            <img :src=pokeImg alt="">
         </picture>
         <div class="card__container-propertiers">
-            <h2 class="card__container-propertiers__id">001</h2>
-            <h1 class="card__container-propertiers__name">Pikachu</h1>
+            <h2 class="card__container-propertiers__id">N.º {{ addIdZeros(pokemonId) }}</h2>
+            <h1 class="card__container-propertiers__name">{{ props.name }}</h1>
             <p class="card__container-propertiers__type">Electrico</p>
         </div>
     </div>
@@ -16,12 +45,23 @@
 <style lang="scss" scoped>
 @use '../scss/colors' as c;
   .card{
-    // width: 10em;
     height: 15em;
-    background: red;
+
      &__container-img{
         height: 10em;
-        background: blue;
+        // width: 100%;
+        background:map-get( c.$colors, "light-grayish" );
+        border-radius: 5px;
+        display: flex;
+        justify-content:center;
+        align-content: center;
+        
+        
+        img{
+          margin: 0 auto;
+          max-width: 80%;
+          max-height: 80%;
+        }
     }
     &__container-propertiers{
        display: flex;
@@ -29,6 +69,7 @@
        margin:0.1em 0.5em;
        &__id{
         font-size: 0.8em;
+        color:map-get( c.$colors, "grey" );
         }
       &__name{
         font-size: 1.2em;
@@ -47,10 +88,4 @@
     }
  }
         
-
-
-
-
-        
-
 </style>

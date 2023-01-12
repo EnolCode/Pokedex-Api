@@ -5,7 +5,7 @@ import CardPokemon from '@/components/CardPokemon.vue';
 
 const service = new Pokemon([]);
 
-let pokemons = ref({});
+let pokemons = ref([]);
 
 onBeforeMount(async()=>{
     pokemons.value = await service.fetchAll();
@@ -13,11 +13,12 @@ onBeforeMount(async()=>{
     // console.log(poke.value.forms[0].name); // Devuelve name
     // console.log(poke.value.weight); // Devuelve peso
     // console.log(poke.value.id); //Devuele el id
-    console.log(poke)
+    // console.log(poke)
+    // console.log(pokemons.value)
 })
 
 let poke = ref([])
-console.log(poke)
+// console.log(poke)
 
 </script>
 
@@ -48,15 +49,13 @@ console.log(poke)
         </div>
     </form>
     <div class="container-cards">
-        <div class="container-cards__wrap">
-            <CardPokemon v-for="pokemon in poke" :key="pokemon.id"/>
-            <!-- <ul>
-                <li v-for="pokemon in poke"> {{ pokemon }}</li>
-            </ul> -->
+        <div class="container-cards__wrap"> 
+             <CardPokemon v-for="pokemon in pokemons" :key="pokemon.url" :url="pokemon.url" :name="pokemon.name" /> 
+            
 
-            <h1>{{ poke.name }}</h1>
-            <img :src="poke.sprites.front_default" alt="">
-        </div>
+            <!-- <h1>{{ poke.name }}</h1> -->
+            <!-- <img :src="poke.sprites.front_default" alt=""> -->
+        </div> 
     </div>
     <footer class="footer">
         <p class="footer__copy">POKE APaI</p>
