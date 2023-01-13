@@ -127,17 +127,16 @@
 			}
 		}
 		&__show-propertiers {
-			@include m.flex(flex, row, space-around, center, auto);
+			@include m.flex(flex, row, auto, space-around, center);
       text-align: center;
 
 			div {
-			  @include m.flex(flex, column, auto, center, auto);
+			  @include m.flex(flex, column, auto, center, center);
 				font-size: 0.7em;
         width: 80%;
-        
 				.card__show-propertiers-details {
-          background-color: rgb(182, 175, 175);
           @include m.borderRadius();
+          background-color: rgb(182, 175, 175);
 					margin: .3em 0;
           width: 95% ;
 					padding: 0.3em;

@@ -16,9 +16,10 @@
 
     &__search{
         width: 45%;
+
         .search__input{
+            @include m.borderRadius();
             background:map-get( c.$colors, "white" );
-            border-radius: 5px;
             border: 4px solid map-get( c.$colors, "grey" );
             font-size: 1.5em;
             margin-top: .2em;
@@ -32,9 +33,9 @@
         }
 
         .search__button{
+            @include m.borderRadius();
             align-self: end;
             background: map-get( c.$colors, "orange" );;
-            border-radius: 5px;
             margin-left: 2em;
             padding: .8em ;
             cursor: pointer;
@@ -58,9 +59,9 @@
         }
 
         .type__select{
+            @include m.borderRadius();
             padding: .8em;
             background:  map-get( c.$colors, "green" );
-            border-radius: 5px;
             color:  map-get( c.$colors, "light-grayish" );
             margin-top: .2em
         }

@@ -16,17 +16,21 @@ app.directive("color-calification", {
             el.style.background = "#228F41";
             el.style.color = "white";
         }
-        if(el.innerHTML === "Deficiente"){
-            el.style.color = "#FF4D00"
+        if(el.innerHTML === "Fire"){
+            el.style.background = "#FF4D00"
+            el.style.color = "white";
         }
-        if(el.innerHTML === "Suficiente"){
-            el.style.color = ""
+        if(el.innerHTML === "Normal"){
+            el.style.background = "grey";
+            el.style.color = "white";
         }
-        if(el.innerHTML === "Notable"){
-            el.style.color = "#00AEFF"
+        if(el.innerHTML === "Water"){
+            el.style.background = "#00AEFF";
+            el.style.color = "white";
         }
-        if(el.innerHTML === "Sobresaliente"){
-            el.style.color = "#001FFF"
+        if(el.innerHTML === "Bug"){
+            el.style.background = "rgb(51, 92, 11)";
+            el.style.color = "white";
         }
     }
 })
