@@ -10,7 +10,7 @@ const app = createApp(App)
 
 app.use(createPinia())
 
-app.directive("color-calification", {
+app.directive("color-type", {
     updated: (el, binding) => {
         if(el.innerHTML === "Grass"){
             el.style.background = "#228F41";

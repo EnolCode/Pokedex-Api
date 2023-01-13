@@ -11,6 +11,10 @@
 		},
 	});
 
+  const showProperties = () => {
+
+  }
+
 	let pokeDetails = ref({});
 	let pokemonImg = ref();
 	let pokemonId = ref();
@@ -45,10 +49,10 @@
 			<h2 class="card__container-propertiers__id">
 				N.º {{ addIdZeros(pokemonId) }}
 			</h2>
-			<h1 class="card__container-propertiers__name" v-color-calification>
+			<h1 class="card__container-propertiers__name" >
 				{{ firstCapitalLetter(props.name) }}
 			</h1>
-			<p class="card__container-propertiers__type" v-color-calification>
+			<p class="card__container-propertiers__type" v-color-type>
 				{{ firstCapitalLetter(pokeType) }}
 			</p>
 			<div class="card__container-propertiers__button">
