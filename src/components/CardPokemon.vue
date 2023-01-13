@@ -9,17 +9,20 @@ const props = defineProps({
       type: String
    }
 })
+
 let pokeDetails = ref ({});
-let pokeImg = ref()
+let pokemonImg = ref()
 let pokemonId = ref()
-const eso = "officialArtwork";
-// console.log(props.url)
+let pokemonType = ref()
+
 onBeforeMount(async()=>{
+
   const resp = await fetch(props.url)
   const data = await resp.json() 
   pokeDetails.value = data
-  pokeImg.value = pokeDetails.value.sprites.other.home.front_default;
+  pokemonImg.value = pokeDetails.value.sprites.other.home.front_default;
   pokemonId.value = pokeDetails.value.id;
+  pokemonType.value = pokeDetails.value.types[0].type.name;
 })
 
 const addIdZeros =  (id) =>{
@@ -33,15 +36,16 @@ const addIdZeros =  (id) =>{
 <template>
     <div class="card">
         <picture class="card__container-img">
-            <img :src=pokeImg alt="">
+            <img :src=pokemonImg alt="">
         </picture>
         <div class="card__container-propertiers">
             <h2 class="card__container-propertiers__id">N.º {{ addIdZeros(pokemonId) }}</h2>
             <h1 class="card__container-propertiers__name">{{ props.name }}</h1>
-            <p class="card__container-propertiers__type">Electrico</p>
+            <p class="card__container-propertiers__type">{{ pokemonType }}</p>
         </div>
     </div>
 </template>
+
 <style lang="scss" scoped>
 @use '../scss/colors' as c;
   .card{

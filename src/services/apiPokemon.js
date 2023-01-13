@@ -1,5 +1,3 @@
-import pokemonApi from "./pokeApi";
-
 
 class Pokemon {
     #pokemon;
@@ -9,12 +7,14 @@ class Pokemon {
             const url = "https://pokeapi.co/api/v2/pokemon/";
             const response = await fetch(url);
             const json = await response.json();
+
             let pokemons = [];
 
             for( const pokemon of json.results ){
                 pokemons.push( pokemon );
             }
 
+            console.log(pokemons.forEach(el=> console.log(el.name)))
             return pokemons
 
         } catch (error) {

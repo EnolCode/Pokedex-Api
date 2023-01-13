@@ -10,11 +10,6 @@ let pokemons = ref([]);
 onBeforeMount(async()=>{
     pokemons.value = await service.fetchAll();
     poke.value = await service.fetchOnePokemon();
-    // console.log(poke.value.forms[0].name); // Devuelve name
-    // console.log(poke.value.weight); // Devuelve peso
-    // console.log(poke.value.id); //Devuele el id
-    // console.log(poke)
-    // console.log(pokemons.value)
 })
 
 let poke = ref([])
@@ -52,9 +47,6 @@ let poke = ref([])
         <div class="container-cards__wrap"> 
              <CardPokemon v-for="pokemon in pokemons" :key="pokemon.url" :url="pokemon.url" :name="pokemon.name" /> 
             
-
-            <!-- <h1>{{ poke.name }}</h1> -->
-            <!-- <img :src="poke.sprites.front_default" alt=""> -->
         </div> 
     </div>
     <footer class="footer">
