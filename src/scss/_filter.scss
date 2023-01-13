@@ -1,65 +1,67 @@
 @use '@/scss/colors' as c;
+@use '@/scss/mixins' as m;
 
 .filter{
-    display: flex;
-    width: 60%;
-    justify-content: space-around;
+    @include m.flex(flex, auto, auto, space-around , auto );
     background: map-get(c.$colors , "dark-blue" );
+    display: flex;
+    justify-content: space-around;
     padding: 1em 0;
+    width: 60%;
     
     &__container-search{
-        display: flex;
-        flex-direction: row;
+        @include m.flex(flex, row, auto, auto , auto );
+
     }
 
     &__search{
         width: 45%;
         .search__input{
             background:map-get( c.$colors, "white" );
+            border-radius: 5px;
+            border: 4px solid map-get( c.$colors, "grey" );
+            font-size: 1.5em;
+            margin-top: .2em;
             padding: .2em .6em;
             width: 100%;
-            border-radius: 5px;
-            margin-top: .2em;
-            font-size: 1.5em;
         }
 
         .search__title{
-            font-size: 1.5em;
             color: map-get( c.$colors, "white" );
+            font-size: 1.5em;
         }
 
         .search__button{
-            padding: .6em .8em ;
+            align-self: end;
             background: map-get( c.$colors, "orange" );;
-            margin-left: 2em;
             border-radius: 5px;
+            margin-left: 2em;
+            padding: .8em ;
             cursor: pointer;
+            
             &:hover{
                 opacity: .8;
             }
         }
 
         .icon-search{
-            font-size: 1em;
             color:  map-get( c.$colors, "white" );
         }
     }
 
     &__type{
-        display: flex;
-        flex-direction: column;
+    @include m.flex(flex, column, auto, auto , auto );
 
         .type__title{
-            font-size: 1.5em;
             color:  map-get( c.$colors, "white" );
+            font-size: 1.5em;
         }
 
         .type__select{
             padding: .8em;
             background:  map-get( c.$colors, "green" );
-            color:  map-get( c.$colors, "light-grayish" );
-
             border-radius: 5px;
+            color:  map-get( c.$colors, "light-grayish" );
             margin-top: .2em
         }
     }

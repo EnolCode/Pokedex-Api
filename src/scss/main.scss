@@ -1,3 +1,13 @@
 @use "/src/scss/resetpro.scss";
 @use "/src/scss/_mixins.scss";
 @use "/src/scss/_colors.scss";
+@use '/src/scss/fonts';
+
+
+body{
+    font-family: "flexo";
+}
+
+.bold{
+    font-weight: bold;
+}

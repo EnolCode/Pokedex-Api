@@ -12,6 +12,6 @@
     color: $col;
 }
 
-@mixin border(){
-    border: 2px solid map-get(c.$colors, "orange");
+@mixin borderRadius(){
+    border-radius: 5px;
 }

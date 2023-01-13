@@ -1,18 +1,19 @@
 @use '@/scss/colors' as c;
+@use '@/scss/mixins' as m;
+
 
 .container-cards{
-    width: 60%;
-    margin: 0 auto;
+    @include m.flex(flex, auto, auto, center, auto );
     background:  map-get( c.$colors, "white" );
-    display: flex;
-    justify-content: center;
+    margin: 0 auto;
     padding-bottom: 2em;
+    width: 60%;
     
     &__wrap{
-        margin-top: 2em;
         display: grid;
-        width: 80%;
-        grid-template-columns: repeat( auto-fit, minmax(10em, 1fr) );
         gap: 2em;
+        grid-template-columns: repeat( auto-fit, minmax(10em, 1fr) );
+        margin-top: 2em;
+        width: 80%;
     }
 }

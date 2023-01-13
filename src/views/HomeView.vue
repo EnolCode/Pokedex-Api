@@ -9,10 +9,15 @@ let pokemons = ref([]);
 
 onBeforeMount(async()=>{
     pokemons.value = await service.fetchAll();
-    poke.value = await service.fetchOnePokemon();
 })
 
-let poke = ref([])
+let filterName = ref("");
+
+const getId = () =>{
+  let pokemonId = filterName.value
+  filterName.value = ""
+  newArr = pokemons.find(el => el.id === pokemonId)
+}
 
 </script>
 
@@ -24,10 +29,12 @@ let poke = ref([])
 
     <form class="filter" action="#">
         <div class="filter__search">
-            <label for="search" class="search__title">Nombre o número</label>
+            <label for="search" class="search__title" v-color-calification>Nombre o número</label>
             <div class="filter__container-search">
-                <input type="text" id="search" class="search__input">
-                <button class="search__button"><i class="fa-solid fa-magnifying-glass icon-search"></i></button>
+                <input type="text" id="search" class="search__input" v-model="filterName">
+                <button class="search__button">
+                    <i class="fa-solid fa-magnifying-glass icon-search"></i>
+                </button>
             </div>
         </div>
 
@@ -66,20 +73,20 @@ let poke = ref([])
     }
 
     .header{
-        background: rgb(255, 254, 254);
         @include m.flex(flex, auto, nowrap, center , auto );
-        width: 60%;
+        background: rgb(255, 254, 254);
         padding-bottom: 1em;
+        width: 60%;
         &__img{
             width: 30%;
         }
     }
 
     .footer{
-          background: map-get(c.$colors , "dark-blue" );
           @include m.flex(flex, auto, nowrap, center ,center);
-          width: 100% ;
+          background: map-get(c.$colors , "dark-blue" );
           padding: 2em;
+          width: 100% ;
 
           &__copy{
             color:  map-get( c.$colors, "white" );

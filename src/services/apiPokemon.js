@@ -1,11 +1,11 @@
 
 class Pokemon {
     #pokemon;
+    url = "https://pokeapi.co/api/v2/pokemon/";
 
     async fetchAll(){
         try {
-            const url = "https://pokeapi.co/api/v2/pokemon/";
-            const response = await fetch(url);
+            const response = await fetch(this.url);
             const json = await response.json();
 
             let pokemons = [];
@@ -13,8 +13,7 @@ class Pokemon {
             for( const pokemon of json.results ){
                 pokemons.push( pokemon );
             }
-
-            console.log(pokemons.forEach(el=> console.log(el.name)))
+            
             return pokemons
 
         } catch (error) {
