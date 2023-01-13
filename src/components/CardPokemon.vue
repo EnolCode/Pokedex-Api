@@ -42,7 +42,10 @@ const addIdZeros =  (id) =>{
             <h2 class="card__container-propertiers__id">N.º {{ addIdZeros(pokemonId) }}</h2>
             <h1 class="card__container-propertiers__name">{{ props.name }}</h1>
             <p class="card__container-propertiers__type">{{ pokemonType }}</p>
+            <div class="card__container-propertiers__button">
+            <i class="fa-solid fa-plus"></i>
         </div>
+    </div>
     </div>
 </template>
 
@@ -87,6 +90,14 @@ const addIdZeros =  (id) =>{
         font-size: 0.7em;
         margin-top: 0.3em;
         background: orange;
+      }
+      &__button{
+        display: flex;
+        align-self: flex-end;
+        background-color: aqua;
+        position: relative;
+        bottom: 15px;
+        padding: 0.1em;
       }
            
     }
