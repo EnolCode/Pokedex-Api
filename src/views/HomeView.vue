@@ -13,7 +13,6 @@ onBeforeMount(async()=>{
 })
 
 let poke = ref([])
-// console.log(poke)
 
 </script>
 
