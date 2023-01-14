@@ -4,6 +4,7 @@ import { ref, onBeforeMount, reactive } from 'vue';
 import CardPokemon from '@/components/CardPokemon.vue';
 import { usePokemonsStore} from "@/stores/store.js";
 
+
 const pokemonsStore = usePokemonsStore();
 
 const service = new Pokemon([]);
@@ -18,17 +19,19 @@ onBeforeMount(async()=>{
 const getPokemons = async (data) => {
     await pokemonsStore.fetchPokemons();
 }
-
-
 let filterName = ref("");
 let newArr = reactive([])
 
-const getId = () =>{
-    let pokeId = filterName.value.toLowerCase()
+const getName = () =>{
+    let pokeName = filterName.value.toLowerCase()
     filterName.value = ""
     newArr.pop()
-    newArr.push(pokemonsStore.pokemones.find(el => el.name === pokeId))
+  
+    pokemonsStore.pokemones.find(el => el.name === pokeName) 
+        ?   newArr.push(pokemonsStore.pokemones.find(el => el.name === pokeName)) 
+        :   alert("El nombre introducido no existe");
 }
+
 
 
 
@@ -40,7 +43,7 @@ const getId = () =>{
         <img class="header__img" src="@/assets/images/pokeapi-logo.png" alt="logo-pokemon">
     </header>
 
-    <form class="filter" @submit.prevent="getId">
+    <form class="filter" @submit.prevent="getName">
         <div class="filter__search">
             <label for="search" class="search__title">Búsqueda por nombre </label>
             <div class="filter__container-search">
