@@ -5,34 +5,40 @@
 	const props = defineProps({
 		name: {
 			type: String,
+			default: null,
 		},
 		url: {
 			type: String,
+			
 		},
 	});
+	
+	let show = ref(true);
 
-  const showProperties = () => {
-
-  }
+	const showDetails = () => {
+		show.value === false ? (show.value = true) : (show.value = false);
+	};
 
 	let pokeDetails = ref({});
 	let pokemonImg = ref();
 	let pokemonId = ref();
 	let pokemonType = ref();
 	let pokeType = ref("");
-  let pokeAttack = ref();
-  let pokeDefense = ref();
+	let pokeAttack = ref();
+	let pokeDefense = ref();
 
 	onBeforeMount(async () => {
+		console.log
 		const resp = await fetch(props.url);
 		const data = await resp.json();
 		pokeDetails.value = data;
-		pokemonImg.value = pokeDetails.value.sprites.other.home.front_default;
+		pokemonImg.value =
+		pokeDetails.value.sprites.other.home.front_default;
 		pokemonId.value = pokeDetails.value.id;
 		pokemonType.value = pokeDetails.value.types[0].type.name;
 		pokeType = pokemonType.value;
-    pokeAttack.value = pokeDetails.value.stats[1].base_stat;
-    pokeDefense.value = pokeDetails.value.stats[2].base_stat;
+		pokeAttack.value = pokeDetails.value.stats[1].base_stat;
+		pokeDefense.value = pokeDetails.value.stats[2].base_stat;
 	});
 
 </script>
@@ -49,24 +55,48 @@
 			<h2 class="card__container-propertiers__id">
 				N.º {{ addIdZeros(pokemonId) }}
 			</h2>
-			<h1 class="card__container-propertiers__name" >
+			<h1 class="card__container-propertiers__name">
 				{{ firstCapitalLetter(props.name) }}
 			</h1>
-			<p class="card__container-propertiers__type" v-color-type>
+			<p
+				class="card__container-propertiers__type"
+				v-color-type
+			>
 				{{ firstCapitalLetter(pokeType) }}
 			</p>
-			<div class="card__container-propertiers__button">
-				<i class="fa-solid fa-plus"></i>
+			<div
+				class="card__container-propertiers__button"
+				@click="showDetails"
+			>
+				<i
+					class="fa-solid fa-plus"
+					:class="{ none: !show }"
+				></i>
+				<i
+					class="fa-solid fa-minus"
+					:class="{ none: show }"
+				></i>
 			</div>
 		</div>
-		<div class="card__show-propertiers">
+		<div
+			class="card__show-propertiers"
+			:class="{ none: show }"
+		>
 			<div>
-				<p class="card__show-propertiers-details"><span class="bold">Weight: </span>{{ pokeDetails.weight }}</p>
-				<p class="card__show-propertiers-details"><span class="bold">Height: </span>{{ pokeDetails.height }}</p>
+				<p class="card__show-propertiers-details">
+					<span class="bold">Weight: </span>{{ pokeDetails.weight }}kg
+				</p>
+				<p class="card__show-propertiers-details">
+					<span class="bold">Height: </span>{{ pokeDetails.height }}m
+				</p>
 			</div>
 			<div>
-				<p class="card__show-propertiers-details"><span class="bold">Attack: </span>  {{ pokeAttack }}</p>
-				<p class="card__show-propertiers-details"><span class="bold">Defense: </span> {{ pokeDefense }}</p>
+				<p class="card__show-propertiers-details">
+					<span class="bold">Attack: </span> {{ pokeAttack }}
+				</p>
+				<p class="card__show-propertiers-details">
+					<span class="bold">Defense: </span> {{ pokeDefense }}
+				</p>
 			</div>
 		</div>
 	</div>
@@ -78,10 +108,11 @@
 
 	.card {
 		min-height: 15em;
+		@include m.borderRadius();
 
 		&__container-img {
 			@include m.flex(flex, auto, auto, center, center);
-      @include m.borderRadius();
+			@include m.borderRadius();
 			background: map-get(c.$colors, "light-grayish");
 			height: 10em;
 
@@ -108,8 +139,8 @@
 			}
 
 			&__type {
-        @include m.borderRadius();
-				background:map-get(c.$colors, "orange");
+				@include m.borderRadius();
+				background: map-get(c.$colors, "orange");
 				font-size: 0.7em;
 				margin-top: 0.3em;
 				text-align: center;
@@ -117,7 +148,7 @@
 			}
 
 			&__button {
-        @include m.borderRadius();
+				@include m.borderRadius();
 				align-self: flex-end;
 				background-color: map-get(c.$colors, "green");
 				bottom: 1.1em;
@@ -132,20 +163,24 @@
 		}
 		&__show-propertiers {
 			@include m.flex(flex, row, auto, space-around, center);
-      text-align: center;
+			text-align: center;
 
 			div {
-			  @include m.flex(flex, column, auto, center, center);
-				font-size: 0.7em;
-        width: 80%;
+				@include m.flex(flex, column, auto, center, center);
+				font-size: 0.65em;
+				width: 80%;
 				.card__show-propertiers-details {
-          @include m.borderRadius();
-          background-color: rgb(182, 175, 175);
-					margin: .3em 0;
-          width: 95% ;
+					@include m.borderRadius();
+					background-color: rgb(216, 205, 205);
+					margin: 0.2em 0;
+					width: 95%;
 					padding: 0.3em;
 				}
 			}
+		}
+
+		.none {
+			display: none;
 		}
 	}
 </style>

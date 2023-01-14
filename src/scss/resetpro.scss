@@ -8,22 +8,22 @@
     👉 Unificar la tipografía de todas las etiquetas de una web
 */
 /* Aquí definimos las Custom properties */
-:root {
-  --negro: hsl(0, 0%, 8%);
-  --blanco: hsl(0, 0%, 98%);
-  --gris: hsl(0, 0%, 41%);
+// :root {
+//   --negro: hsl(0, 0%, 8%);
+//   --blanco: hsl(0, 0%, 98%);
+//   --gris: hsl(0, 0%, 41%);
 
-  /* Tipografía */
-  --tipo-principal: 'Epilogue', sans-serif;
-  --tipo-secundaria: Verdana;
-}
+//   /* Tipografía */
+//   --tipo-principal: 'Epilogue', sans-serif;
+//   --tipo-secundaria: Verdana;
+// }
 
-/* Las adaptamos al modo oscuro */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --negro: #ececec;
-  }
-}
+// /* Las adaptamos al modo oscuro */
+// @media (prefers-color-scheme: dark) {
+//   :root {
+//     --negro: #ececec;
+//   }
+// }
 /* Opcional */
 /* Configuramos si un usuario ha activado el modo alto contraste. (WD) */
 /* Opcional */
@@ -98,14 +98,14 @@ blockquote:before, blockquote:after, q:before, q:after {
 }
 
 /* Configuramos el texto que seleccionamos */
-::-moz-selection {
-  background-color: var(--negro);
-  color: var(--blanco);
-}
-::selection {
-  background-color: var(--negro);
-  color: var(--blanco);
-}
+// ::-moz-selection {
+//   background-color: var(--negro);
+//   color: var(--blanco);
+// }
+// ::selection {
+//   background-color: var(--negro);
+//   color: var(--blanco);
+// }
 
 /* Nivelamos problemas de tipografías y colocación de formularios */
 form, input, textarea, select, button, label {
@@ -145,8 +145,8 @@ svg {
 body {
   min-height: 100vh;
   font-size: 18px;
-  font-family: var(--tipo-principal);
-  color: var(--negro);
+  // font-family: var(--tipo-principal);
+  // color: var(--negro);
   /* opcional */
   /* line-height: 1.4em; */
   /* opcional */

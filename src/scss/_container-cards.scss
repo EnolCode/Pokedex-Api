@@ -4,15 +4,19 @@
 
 .container-cards{
     @include m.flex(flex, auto, auto, center, auto );
-    background:  map-get( c.$colors, "white" );
+    background: map-get(c.$colors , "white") url("/src/assets/images/background.png");
     margin: 0 auto;
     padding-bottom: 2em;
+    // max-width: 100%;
     width: 60%;
+    min-height: 100vh;
+
     
     &__wrap{
         display: grid;
+        justify-content: center;
         gap: 2em;
-        grid-template-columns: repeat( auto-fit, minmax(10em, 1fr) );
+        grid-template-columns: repeat( auto-fit, 10em );
         margin-top: 2em;
         width: 80%;
     }

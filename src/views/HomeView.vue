@@ -2,22 +2,35 @@
 import Pokemon from '@/services/apiPokemon.js';
 import { ref, onBeforeMount, reactive } from 'vue';
 import CardPokemon from '@/components/CardPokemon.vue';
+import { usePokemonsStore} from "@/stores/store.js";
+
+const pokemonsStore = usePokemonsStore();
 
 const service = new Pokemon([]);
 
-let pokemons = ref([]);
+let pokemons = ref();
 
 onBeforeMount(async()=>{
     pokemons.value = await service.fetchAll();
+    getPokemons();
 })
 
+const getPokemons = async (data) => {
+    await pokemonsStore.fetchPokemons();
+}
+
+
 let filterName = ref("");
+let newArr = reactive([])
 
 const getId = () =>{
-  let pokemonId = filterName.value
-  filterName.value = ""
-  newArr = pokemons.find(el => el.id === pokemonId)
+    let pokeId = filterName.value.toLowerCase()
+    filterName.value = ""
+    newArr.pop()
+    newArr.push(pokemonsStore.pokemones.find(el => el.name === pokeId))
 }
+
+
 
 </script>
 
@@ -27,12 +40,12 @@ const getId = () =>{
         <img class="header__img" src="@/assets/images/pokeapi-logo.png" alt="logo-pokemon">
     </header>
 
-    <form class="filter" action="#">
+    <form class="filter" @submit.prevent="getId">
         <div class="filter__search">
-            <label for="search" class="search__title" v-color-calification>Nombre o número</label>
+            <label for="search" class="search__title">Búsqueda por nombre </label>
             <div class="filter__container-search">
                 <input type="text" id="search" class="search__input" v-model="filterName">
-                <button class="search__button">
+                <button class="search__button" >
                     <i class="fa-solid fa-magnifying-glass icon-search"></i>
                 </button>
             </div>
@@ -51,7 +64,9 @@ const getId = () =>{
     </form>
     <div class="container-cards">
         <div class="container-cards__wrap"> 
-             <CardPokemon v-for="pokemon in pokemons" :key="pokemon.url" :url="pokemon.url" :name="pokemon.name" /> 
+            <CardPokemon  v-show="newArr.length < 1" v-for="pokemon in pokemons" :key="pokemon.url" :url="pokemon.url" :name="pokemon.name" /> 
+            <CardPokemon v-show="newArr.length > 0" v-for="pokemon in newArr" :key="pokemon.url" :url="pokemon.url" :name="pokemon.name" /> 
+             <!-- <CardPokemon   />  -->
             
         </div> 
     </div>
@@ -69,12 +84,12 @@ const getId = () =>{
 
     main{
       @include m.flex(flex, column, nowrap, auto ,center);
-        background: rgb(58, 56, 56);
-    }
+      background: map-get(c.$colors , "dark-blue") url("/src/assets/images/background.png");
 
+    }
     .header{
         @include m.flex(flex, auto, nowrap, center , auto );
-        background: rgb(255, 254, 254);
+        background: map-get(c.$colors , "white") url("/src/assets/images/background.png");
         padding-bottom: 1em;
         width: 60%;
         &__img{
@@ -84,7 +99,7 @@ const getId = () =>{
 
     .footer{
           @include m.flex(flex, auto, nowrap, center ,center);
-          background: map-get(c.$colors , "dark-blue" );
+          background:  map-get(c.$colors , "dark-blue" );
           padding: 2em;
           width: 100% ;
 
