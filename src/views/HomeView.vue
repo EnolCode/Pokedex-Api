@@ -1,7 +1,8 @@
 <script setup>
 import Pokemon from '@/services/apiPokemon.js';
-import { ref, onBeforeMount, reactive } from 'vue';
+import { ref, onBeforeMount, reactive, computed } from 'vue';
 import CardPokemon from '@/components/CardPokemon.vue';
+import CardPokemon2 from '@/components/CardPokemon2.vue';
 import { usePokemonsStore} from "@/stores/store.js";
 
 
@@ -20,6 +21,8 @@ const getPokemons = async (data) => {
     await pokemonsStore.fetchPokemons();
 }
 let filterName = ref("");
+// let newArr2 = computed(()=>newArr = newArr2)
+// console.log(newArr2.value)
 let newArr = reactive([])
 
 const getName = () =>{
@@ -32,6 +35,11 @@ const getName = () =>{
         :   alert("El nombre introducido no existe");
 }
 
+    const reset = () =>{
+        location.reload();
+    newArr = [];
+
+}
 
 
 
@@ -40,7 +48,7 @@ const getName = () =>{
 <template>
     <main>
     <header class="header">
-        <img class="header__img" src="@/assets/images/pokeapi-logo.png" alt="logo-pokemon">
+        <img class="header__img" src="@/assets/images/pokeapi-logo.png" alt="logo-pokemon" @click="reset">
     </header>
 
     <form class="filter" @submit.prevent="getName">
@@ -68,7 +76,7 @@ const getName = () =>{
     <div class="container-cards">
         <div class="container-cards__wrap"> 
             <CardPokemon  v-show="newArr.length < 1" v-for="pokemon in pokemons" :key="pokemon.url" :url="pokemon.url" :name="pokemon.name" /> 
-            <CardPokemon v-show="newArr.length > 0" v-for="pokemon in newArr" :key="pokemon.url" :url="pokemon.url" :name="pokemon.name" /> 
+            <CardPokemon2 v-show="newArr.length > 0" v-for="pokemon in newArr" :key="pokemon.url" :url="pokemon.url" :name="pokemon.name" /> 
              <!-- <CardPokemon   />  -->
             
         </div> 
@@ -97,6 +105,7 @@ const getName = () =>{
         width: 60%;
         &__img{
             width: 30%;
+            cursor:pointer;
         }
     }
 

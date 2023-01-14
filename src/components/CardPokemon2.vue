@@ -64,23 +64,9 @@
 			>
 				{{ firstCapitalLetter(pokeType) }}
 			</p>
-			<div
-				class="card__container-propertiers__button"
-				@click="showDetails"
-			>
-				<i
-					class="fa-solid fa-plus"
-					:class="{ none: !show }"
-				></i>
-				<i
-					class="fa-solid fa-minus"
-					:class="{ none: show }"
-				></i>
-			</div>
 		</div>
 		<div
 			class="card__show-propertiers"
-			:class="{ none: show }"
 		>
 			<div>
 				<p class="card__show-propertiers-details">
@@ -107,19 +93,20 @@
 	@use "@/scss/mixins" as m;
 
 	.card {
+		
 		@include m.borderRadius();
-		min-height: 15em;
-
+		// height: 25em;
+		min-width: 20em;
+		justify-self: center;
+		
 		&__container-img {
-			@include m.flex(flex, auto, auto, center, center);
+			// @include m.flex(flex, auto, auto, center,center );
 			@include m.borderRadius();
 			background: map-get(c.$colors, "light-grayish");
-			height: 10em;
 
 			img {
-				margin: 0 auto;
-				max-width: 80%;
-				max-height: 80%;
+				object-position: 0 -2em;
+				// padding-bottom: 3em;
 			}
 		}
 		&__container-propertiers {
@@ -146,20 +133,6 @@
 				text-align: center;
 				width: 5em;
 			}
-
-			&__button {
-				@include m.borderRadius();
-				align-self: flex-end;
-				background-color: map-get(c.$colors, "green");
-				bottom: 1.1em;
-				color: map-get(c.$colors, "white");
-				cursor: pointer;
-				padding: 0.1em 0.3em;
-				position: relative;
-				&:hover {
-					opacity: 0.7;
-				}
-			}
 		}
 		&__show-propertiers {
 			@include m.flex(flex, row, auto, space-around, center);
@@ -177,10 +150,6 @@
 					padding: 0.3em;
 				}
 			}
-		}
-
-		.none {
-			display: none;
 		}
 	}
 </style>
