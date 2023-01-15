@@ -1,6 +1,45 @@
-# Pokemon-API
+# <p align="center"> ![poke-api](https://user-images.githubusercontent.com/116892825/212550763-e5685066-0184-4c4d-ad02-b0d26542bfe2.png) </p>
 
-This template should help get you started developing with Vue 3 in Vite.
+  <p align="center">
+   <img src="https://img.shields.io/badge/STATUS-EN%20DESAROLLO-green">
+   </p>
+
+Una SPA basada en el mundo de los pokemons. 
+Ofrece la posibilidad de buscar tus Pokemons preferidos para conocer sus caracteristicas.
+
+## :hammer:Funcionalidades del proyecto
+
+- `Visualizar Pokemons`: En la pagina Home podrás ver los pokemos ordenados de forma ascendente por su ID.
+
+![image](https://user-images.githubusercontent.com/116892825/212551488-d977454c-bcea-4bdd-88b2-4926d539a24a.png)
+
+- `Botón + info`: Cada tarjeta contiene un boton para ver mas caracteristica de cada Pokemon.
+
+![image](https://user-images.githubusercontent.com/116892825/212551623-10b193be-5449-44b9-9fa1-27d2bbc5d84b.png)
+
+- `Búsqueda por nombre`: Tienes la posibilidad de buscar cada Pokemons por su nombre para poder conocer mas caracteristicas sobre el.
+
+![image](https://user-images.githubusercontent.com/116892825/212551656-865d3089-625e-474a-b165-48d513ada6f9.png)
+
+
+- `Búsqueda por tipo`: También puedes buscar por el tipo de cada Pokemon.
+
+ ![image](https://user-images.githubusercontent.com/116892825/212552193-d0d30a11-acb2-4131-bb22-1c26382a06bd.png)
+
+## 📁 Acceso al proyecto
+https://enolcode.github.io/Pokedex-Api/
+
+## :heavy_check_mark: Herramientas utilizadas:
+- HTML5 (metodología BEM)
+- SASS (SCSS)
+- JS
+- VUE3
+- Vite
+- Pinia
+
+### Autor
+
+- [Enol Igareta](https://github.com/EnolCode)
 
 ## Recommended IDE Setup
 
@@ -16,56 +55,6 @@ See [Vite Configuration Reference](https://vitejs.dev/config/).
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+# author
 
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
-Contexto del proyecto
-El consumo de APIs es una de las tareas mas usuales en el trabajo como desarrollador web frontend, afortunadamente existen una gran variedad de APIs abiertas para poder aprender a consumirlas, en este ejercicio pedagógico vamos a realizar uno de los ejercicios más populares que se pueden encontrar en linea que es hacer una pokedex
-
-Requisitos mínimos:
-
-Cards con los pokemons (fundo de la card según tipo de pokemon)
-Detalles del pokemon
-Filtro por categorias
-Buscador
-​
-Extra:
-
-Mini juego -> adivina quien es
-
-Obligatorio:
-
-Se debe trabajar haciendo uso de pull-request de github
-
-Equipo de Desarrolladores: Enol, Carol y Caren.
-
-UserFlow, Sketch, Baclog, Tablero-Sprint y Sprint  en la carpeta: assets/images.
-
-
-Herramientas utilizadas: 
-
-1-HTML
-2-SASS
-3-JAVASCRIPT
-4-Vue
-5-Pinia
-6-Vitest
-7-GITHUB
-8- FIGMA
-9-JIRA
-10-DIAGRAMS
 
