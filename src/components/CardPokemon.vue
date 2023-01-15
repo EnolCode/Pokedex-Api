@@ -28,7 +28,6 @@
 	let pokeDefense = ref();
 
 	onBeforeMount(async () => {
-		console.log
 		const resp = await fetch(props.url);
 		const data = await resp.json();
 		pokeDetails.value = data;
@@ -80,8 +79,7 @@
 		</div>
 		<div
 			class="card__show-propertiers"
-			:class="{ none: show }"
-		>
+			:class="{ none: show }">
 			<div>
 				<p class="card__show-propertiers-details">
 					<span class="bold">Weight: </span>{{ pokeDetails.weight }}kg

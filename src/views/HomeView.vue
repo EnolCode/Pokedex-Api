@@ -13,6 +13,12 @@ const service = new Pokemon([]);
 
 let pokemons = ref();
 
+
+let filterName = ref("");
+let filterType = ref("");
+let arrName = reactive([])
+let arrType = reactive([])
+
 onBeforeMount(async()=>{
     pokemons.value = await service.fetchAll();
     getPokemons();
@@ -22,11 +28,6 @@ const getPokemons = async (data) => {
     await pokemonsStore.fetchPokemons();
 }
 
-let filterName = ref("");
-let filterType = ref("");
-let arrName = reactive([])
-let arrType = reactive([])
-
 const fetchUrl = async(url,el,pokeType) => {
     const resp = await fetch(url);
     const data = await resp.json();
@@ -34,19 +35,15 @@ const fetchUrl = async(url,el,pokeType) => {
         arrType.push(el)
 
         }
-        
 }
 
 const filterForType = () =>{
-
     let pokeType = filterType.value.toLowerCase()
     filterType.value = "";
     pokemons.value.forEach(el=>{
         fetchUrl(el.url,el,pokeType)
     })
-
 }
-
 </script>
 
 <template>

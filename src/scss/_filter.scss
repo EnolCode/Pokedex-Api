@@ -4,8 +4,6 @@
 .filter{
     @include m.flex(flex, auto, auto, space-around , auto );
     background: map-get(c.$colors , "dark-blue" );
-    display: flex;
-    justify-content: space-around;
     padding: 1em 0;
     width: 60%;
     @include m.mv(){
@@ -49,7 +47,6 @@
     }
         .search__container-filter{
             display: flex;
-            // width: 80%;
         }
         .type__title{
             color:  map-get( c.$colors, "white" );

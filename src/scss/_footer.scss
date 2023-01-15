@@ -1,6 +1,7 @@
 @use "@/scss/colors" as c;
 @use "@/scss/mixins" as m;
 
+
 .footer {
 	@include m.flex(flex, auto, nowrap, space-around, center);
 	background: map-get(c.$colors, "dark-blue");

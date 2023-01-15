@@ -9,16 +9,9 @@
 		},
 		url: {
 			type: String,
-			
 		},
 	});
 	
-	let show = ref(true);
-
-	const showDetails = () => {
-		show.value === false ? (show.value = true) : (show.value = false);
-	};
-
 	let pokeDetails = ref({});
 	let pokemonImg = ref();
 	let pokemonId = ref();
@@ -28,7 +21,6 @@
 	let pokeDefense = ref();
 
 	onBeforeMount(async () => {
-		console.log
 		const resp = await fetch(props.url);
 		const data = await resp.json();
 		pokeDetails.value = data;
