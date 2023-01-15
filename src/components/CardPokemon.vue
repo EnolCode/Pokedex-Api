@@ -169,13 +169,16 @@
 			div {
 				@include m.flex(flex, column, auto, center, center);
 				font-size: 0.65em;
-				width: 80%;
 				.card__show-propertiers-details {
 					@include m.borderRadius();
 					background-color: rgb(216, 205, 205);
-					margin: 0.2em 0;
+					margin: 0.2em ;
 					width: 95%;
-					padding: 0.3em;
+					padding: 0.3em 0.3em;
+					@include m.mv(700px){
+						@include m.flex(flex, column, auto, center, center);
+                		height: 4em;
+       				 }
 				}
 			}
 		}

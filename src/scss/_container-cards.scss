@@ -8,10 +8,7 @@
     margin: 0 auto;
     padding-bottom: 2em;
     width: 60%;
-    min-height: 100vh;
-    
-        
-
+    min-height: 70vh;
     
     &__wrap{
         display: grid;
@@ -19,8 +16,6 @@
         gap: 2em;
         grid-template-columns: repeat( auto-fit, 10em );
         margin-top: 2em;
-        width: 80%;
-
-        
+        width: 80%;        
     }
 }

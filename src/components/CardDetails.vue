@@ -92,9 +92,11 @@
 		@include m.mv(760px){
                 min-width: 15em;
         }
-		@include m.mv(760px){
-                min-width: 10em;
+		@include m.mv(550px){
+                min-width: 9em;
         }
+		
+		
 		
 		&__container-img {
 			@include m.borderRadius();
