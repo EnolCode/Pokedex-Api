@@ -2,8 +2,9 @@
 import Pokemon from '@/services/apiPokemon.js';
 import { ref, onBeforeMount, reactive, computed } from 'vue';
 import CardPokemon from '@/components/CardPokemon.vue';
-import CardPokemon2 from '@/components/CardPokemon2.vue';
+import CardDetails from '@/components/CardDetails.vue';
 import { usePokemonsStore} from "@/stores/store.js";
+import { returnHome, filterForName,  } from "@/js/functions.js"
 
 
 const pokemonsStore = usePokemonsStore();
@@ -20,43 +21,48 @@ onBeforeMount(async()=>{
 const getPokemons = async (data) => {
     await pokemonsStore.fetchPokemons();
 }
+
 let filterName = ref("");
-// let newArr2 = computed(()=>newArr = newArr2)
-// console.log(newArr2.value)
-let newArr = reactive([])
+let filterType = ref("");
+let arrName = reactive([])
+let arrType = reactive([])
 
-const getName = () =>{
-    let pokeName = filterName.value.toLowerCase()
-    filterName.value = ""
-    newArr.pop()
-  
-    pokemonsStore.pokemones.find(el => el.name === pokeName) 
-        ?   newArr.push(pokemonsStore.pokemones.find(el => el.name === pokeName)) 
-        :   alert("El nombre introducido no existe");
+const fetchUrl = async(url,el,pokeType) => {
+    const resp = await fetch(url);
+    const data = await resp.json();
+    if(data.types[0].type.name === pokeType){
+           arrType.push(el)
+            // console.log(data.forms.url)
+        }
 }
 
-    const reset = () =>{
-        location.reload();
-    newArr = [];
+const filterForType = () =>{
+    if(arrType.length>1) return arrType = []
+    let pokeType = filterType.value.toLowerCase()
+    filterType.value = "";
+    pokemons.value.forEach(el=>{
+        fetchUrl(el.url,el,pokeType)
+    })
 
 }
+// console.log(arrName)
 
-
+// filterForType()
 
 </script>
 
 <template>
     <main>
     <header class="header">
-        <img class="header__img" src="@/assets/images/pokeapi-logo.png" alt="logo-pokemon" @click="reset">
+        <img class="header__img" src="@/assets/images/pokeapi-logo.png" alt="logo-pokemon" @click="returnHome(newArr)">
     </header>
 
-    <form class="filter" @submit.prevent="getName">
+    <form class="filter" @submit.prevent>
         <div class="filter__search">
             <label for="search" class="search__title">Búsqueda por nombre </label>
             <div class="filter__container-search">
                 <input type="text" id="search" class="search__input" v-model="filterName">
-                <button class="search__button" >
+                <button class="search__button" @click="filterForName(filterName, arrName, pokemonsStore)" >
                     <i class="fa-solid fa-magnifying-glass icon-search"></i>
                 </button>
             </div>
@@ -64,19 +70,24 @@ const getName = () =>{
 
         <div class="filter__type">
              <label for="type" class="type__title">Búsqueda por tipo</label>
-             <select name="type" id="type" class="type__select">
+             <select name="type" id="type" class="type__select" v-model="filterType">
                 <option value=""  class="type__option" selected>Seleccione el tipo a filtrar</option>
-                 <option value=""  class="type__option">Electrico</option>
-                 <option value="" class="type__option">Planta</option>
-                 <option value="" class="type__option">Agua</option>
-                 <option value="" class="type__option">Fuego</option>
+                 <option value="grass"  class="type__option">Planta</option>
+                 <option value="fire" class="type__option">Fuego</option>
+                 <option value="water" class="type__option">Agua</option>
+                 <option value="normal" class="type__option">Normal</option>
+                 <option value="bug" class="type__option">Bicho</option>
              </select>
+             <button class="search__button" @click="filterForType" >
+                    <i class="fa-solid fa-magnifying-glass icon-search"></i>
+                </button>
         </div>
     </form>
     <div class="container-cards">
         <div class="container-cards__wrap"> 
-            <CardPokemon  v-show="newArr.length < 1" v-for="pokemon in pokemons" :key="pokemon.url" :url="pokemon.url" :name="pokemon.name" /> 
-            <CardPokemon2 v-show="newArr.length > 0" v-for="pokemon in newArr" :key="pokemon.url" :url="pokemon.url" :name="pokemon.name" /> 
+            <CardPokemon  v-show="arrName.length < 1 && arrType.length < 1" v-for="pokemon in pokemons" :key="pokemon.url" :url="pokemon.url" :name="pokemon.name" /> 
+            <CardDetails v-show="arrName.length > 0" v-for="pokemon in arrName" :key="pokemon.url" :url="pokemon.url" :name="pokemon.name" /> 
+            <CardPokemon v-show="arrType.length > 0" v-for="pokemon in arrType" :key="pokemon.url" :url="pokemon.url" :name="pokemon.name" /> 
              <!-- <CardPokemon   />  -->
             
         </div> 
