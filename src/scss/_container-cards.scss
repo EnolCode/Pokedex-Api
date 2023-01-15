@@ -3,7 +3,7 @@
 
 
 .container-cards{
-    @include m.flex(flex, auto, auto, center, auto );
+    @include m.flex(flex, auto, auto, center, start );
     background: map-get(c.$colors , "white") url("/src/assets/images/background.png");
     margin: 0 auto;
     padding-bottom: 2em;
