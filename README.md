@@ -26,6 +26,11 @@ Ofrece la posibilidad de buscar tus Pokemons preferidos para conocer sus caracte
 
  ![image](https://user-images.githubusercontent.com/116892825/212552193-d0d30a11-acb2-4131-bb22-1c26382a06bd.png)
 
+## Versión Mobile
+
+![image](https://user-images.githubusercontent.com/116892825/212552841-4c7411c7-9909-4de5-8ce4-06d155ad30de.png)
+
+
 ## 📁 Acceso al proyecto
 https://enolcode.github.io/Pokedex-Api/
 
@@ -54,7 +59,4 @@ See [Vite Configuration Reference](https://vitejs.dev/config/).
 ```sh
 npm install
 ```
-
-# author
-
 
