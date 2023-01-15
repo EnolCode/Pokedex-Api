@@ -95,18 +95,21 @@
 	.card {
 		
 		@include m.borderRadius();
-		// height: 25em;
 		min-width: 20em;
 		justify-self: center;
+		@include m.mv(760px){
+                min-width: 15em;
+        }
+		@include m.mv(760px){
+                min-width: 10em;
+        }
 		
 		&__container-img {
-			// @include m.flex(flex, auto, auto, center,center );
 			@include m.borderRadius();
 			background: map-get(c.$colors, "light-grayish");
 
 			img {
 				object-position: 0 -2em;
-				// padding-bottom: 3em;
 			}
 		}
 		&__container-propertiers {
@@ -120,7 +123,7 @@
 
 			&__name {
 				color: map-get(c.$colors, "very-dark-blue");
-				font-size: 1.2em;
+				font-size: 1.6em;
 				font-weight: bold;
 				margin-top: 0.5em;
 			}
@@ -128,7 +131,7 @@
 			&__type {
 				@include m.borderRadius();
 				background: map-get(c.$colors, "orange");
-				font-size: 0.7em;
+				font-size: 1em;
 				margin-top: 0.3em;
 				text-align: center;
 				width: 5em;
@@ -140,7 +143,8 @@
 
 			div {
 				@include m.flex(flex, column, auto, center, center);
-				font-size: 0.65em;
+				font-size: 1em;
+				margin-top:.5em;
 				width: 80%;
 				.card__show-propertiers-details {
 					@include m.borderRadius();

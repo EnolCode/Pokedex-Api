@@ -11,14 +11,12 @@ export const firstCapitalLetter = (str) =>{
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
 
-  console.log("Hola")
-
 export const returnHome = (arr) =>{
   location.reload();
   arr = [];
 
 }
-// console.log()
+
 export const filterForName = (name,arr,store) =>{
   let pokeName = name.toLowerCase()
   name = ""
