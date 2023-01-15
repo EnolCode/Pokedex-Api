@@ -93,8 +93,15 @@ const filterForType = () =>{
         </div> 
     </div>
     <footer class="footer">
-        <p class="footer__copy">POKE APaI</p>
-    </footer>
+    <div class="footer__container-title">
+      <h2 class="footer__title">&copy; Poke Api </h2>
+    </div>
+    <div class="footer__container-social-media">
+        <a href="https://www.linkedin.com/in/enol-igareta/" target="_blank"><i class="fa-brands fa-linkedin icon-media"></i></a> 
+        <a href="https://github.com/EnolCode" target="_blank"><i class="fa-brands fa-github icon-media"></i></a> 
+        <a href="https://github.com/EnolCode" target="_blank"><i class="fa-brands fa-twitter icon-media"></i></a> 
+    </div>
+  </footer>
 </main>
 </template>
 
@@ -103,6 +110,7 @@ const filterForType = () =>{
 @use '@/scss/mixins' as m;
 @use '@/scss/container-cards' ;
 @use '@/scss/filter';
+@use '@/scss/footer';
 
     main{
       @include m.flex(flex, column, nowrap, auto ,center);
@@ -121,17 +129,6 @@ const filterForType = () =>{
                 width: 80%;
         }
         }
-    }
-
-    .footer{
-          @include m.flex(flex, auto, nowrap, center ,center);
-          background:  map-get(c.$colors , "dark-blue" );
-          padding: 2em;
-          width: 100% ;
-
-          &__copy{
-            color:  map-get( c.$colors, "white" );
-          }
     }
     
 </style>
