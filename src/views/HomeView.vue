@@ -31,13 +31,14 @@ const fetchUrl = async(url,el,pokeType) => {
     const resp = await fetch(url);
     const data = await resp.json();
     if(data.types[0].type.name === pokeType){
-           arrType.push(el)
-            // console.log(data.forms.url)
+        arrType.push(el)
+
         }
+        
 }
 
 const filterForType = () =>{
-    if(arrType.length>1) return arrType = []
+
     let pokeType = filterType.value.toLowerCase()
     filterType.value = "";
     pokemons.value.forEach(el=>{
@@ -45,9 +46,6 @@ const filterForType = () =>{
     })
 
 }
-// console.log(arrName)
-
-// filterForType()
 
 </script>
 
@@ -70,6 +68,7 @@ const filterForType = () =>{
 
         <div class="filter__type">
              <label for="type" class="type__title">Búsqueda por tipo</label>
+             <div class="search__container-filter">
              <select name="type" id="type" class="type__select" v-model="filterType">
                 <option value=""  class="type__option" selected>Seleccione el tipo a filtrar</option>
                  <option value="grass"  class="type__option">Planta</option>
@@ -78,17 +77,18 @@ const filterForType = () =>{
                  <option value="normal" class="type__option">Normal</option>
                  <option value="bug" class="type__option">Bicho</option>
              </select>
-             <button class="search__button" @click="filterForType" >
+
+             <button class="search__button" @click="filterForType(filterType,arrType, pokemons)" >
                     <i class="fa-solid fa-magnifying-glass icon-search"></i>
                 </button>
         </div>
+    </div>
     </form>
     <div class="container-cards">
         <div class="container-cards__wrap"> 
             <CardPokemon  v-show="arrName.length < 1 && arrType.length < 1" v-for="pokemon in pokemons" :key="pokemon.url" :url="pokemon.url" :name="pokemon.name" /> 
             <CardDetails v-show="arrName.length > 0" v-for="pokemon in arrName" :key="pokemon.url" :url="pokemon.url" :name="pokemon.name" /> 
-            <CardPokemon v-show="arrType.length > 0" v-for="pokemon in arrType" :key="pokemon.url" :url="pokemon.url" :name="pokemon.name" /> 
-             <!-- <CardPokemon   />  -->
+            <CardPokemon  v-for="pokemon in arrType" :key="pokemon.url" :url="pokemon.url" :name="pokemon.name" /> 
             
         </div> 
     </div>
@@ -117,6 +117,9 @@ const filterForType = () =>{
         &__img{
             width: 30%;
             cursor:pointer;
+            @include m.mv(600px){
+                width: 80%;
+        }
         }
     }
 

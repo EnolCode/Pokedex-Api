@@ -8,14 +8,23 @@
     justify-content: space-around;
     padding: 1em 0;
     width: 60%;
+    @include m.mv(){
+        @include m.flex(flex, column, wrap, auto, center );
+    }
+    @include m.mv(600px){
+        font-size: .6em;
+    }
     
     &__container-search{
         @include m.flex(flex, row, auto, auto , auto );
-
     }
 
     &__search{
         width: 45%;
+        @include m.mv(){
+            width: 80%;
+            margin-bottom: 1em
+        }
 
         .search__input{
             @include m.borderRadius();
@@ -31,28 +40,17 @@
             color: map-get( c.$colors, "white" );
             font-size: 1.5em;
         }
-
-        .search__button{
-            @include m.borderRadius();
-            align-self: end;
-            background: map-get( c.$colors, "orange" );;
-            margin-left: 2em;
-            padding: .8em ;
-            cursor: pointer;
-            
-            &:hover{
-                opacity: .8;
-            }
-        }
-
-        .icon-search{
-            color:  map-get( c.$colors, "white" );
-        }
     }
 
     &__type{
     @include m.flex(flex, column, auto, auto , auto );
-
+    @include m.mv(){
+        width: 80%;
+    }
+        .search__container-filter{
+            display: flex;
+            // width: 80%;
+        }
         .type__title{
             color:  map-get( c.$colors, "white" );
             font-size: 1.5em;
@@ -63,7 +61,22 @@
             padding: .8em;
             background:  map-get( c.$colors, "green" );
             color:  map-get( c.$colors, "light-grayish" );
-            margin-top: .2em
+            margin-top: .2em;
+            width: 90%;
+        }
+    }
+
+    .search__button{
+        @include m.borderRadius();
+        align-self: end;
+        background: map-get( c.$colors, "orange" );;
+        margin-left: 2em;
+        padding: .8em ;
+        cursor: pointer;
+        color:  map-get( c.$colors, "white" );
+        
+        &:hover{
+            opacity: .8;
         }
     }
 }

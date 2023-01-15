@@ -108,7 +108,10 @@
 
 	.card {
 		@include m.borderRadius();
-		min-height: 15em;
+		@include m.mv(600px){
+			margin: 0 auto;
+			width: 80%;
+		}
 
 		&__container-img {
 			@include m.flex(flex, auto, auto, center, center);

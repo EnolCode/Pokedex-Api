@@ -30,14 +30,3 @@ export const filterForName = (name,arr,store) =>{
 }
 
 
-// export const filterForType = (type,arr,store, service) =>{
-//   let pokeType = type.toLowerCase()
-//   type = ""
-//   const service = new Pokemon([]);
-
-//   // arr.pop()
-//   // store.pokemones.forEach(el=> console.log(el.types))
-//   // store.pokemones.filter(el => el.types[0].type.name === pokeType) 
-//   //     ?   arr.push(store.pokemones.filter(el => el.types[0].type.name === pokeType)) 
-//   //     :   alert("El tipo introducido no existe");
-// }

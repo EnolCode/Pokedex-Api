@@ -9,6 +9,8 @@
     padding-bottom: 2em;
     width: 60%;
     min-height: 100vh;
+    
+        
 
     
     &__wrap{
@@ -18,5 +20,7 @@
         grid-template-columns: repeat( auto-fit, 10em );
         margin-top: 2em;
         width: 80%;
+
+        
     }
 }
