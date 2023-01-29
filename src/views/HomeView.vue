@@ -5,9 +5,12 @@ import CardPokemon from '@/components/CardPokemon.vue';
 import CardDetails from '@/components/CardDetails.vue';
 import { usePokemonsStore} from "@/stores/store.js";
 import { returnHome,   } from "@/js/functions.js"
+import { storeToRefs } from 'pinia';
 
 
 const pokemonsStore = usePokemonsStore();
+
+const {fetchPokemons, pokemones} = storeToRefs(pokemonsStore);
 
 const service = new Pokemon([]);
 
@@ -19,23 +22,24 @@ let filterType = ref("");
 let arrName = reactive([])
 let arrType = reactive([])
 
+const getPokemons = async (data) => {
+    await pokemonsStore.fetchPokemons();
+}
+
 onBeforeMount(async()=>{
+    console.log(pokemones.value)
     pokemons.value = await service.fetchAll();
     getPokemons();
-    // pokemonsStore.fetchPokemon(filterName.value);
 })
 
  const filterForName = (filterName) => {
-    console.log(pokemonsStore.fetchPokemon(filterName.value))
+    // console.log(pokemonsStore.fetchPokemon(filterName.value))
     // arrName.pop()
 //   pokemonAxios.get(name) 
 //       ?   arr.push(name) 
 //       :   alert("El nombre introducido no existe");
 }
 
-const getPokemons = async (data) => {
-    await pokemonsStore.fetchPokemons();
-}
 
 const fetchUrl = async(url,el,pokeType) => {
     const resp = await fetch(url);

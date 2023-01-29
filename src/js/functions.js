@@ -1,6 +1,5 @@
 import { ref } from "vue"
 import Pokemon from '@/services/apiPokemon.js';
-import { usePokemonsStore, pokemonAxios } from "@/stores/store.js";
 
 export const addIdZeros =  (id) =>{
     if(id < 10) return   `00${id}`
@@ -15,8 +14,17 @@ export const firstCapitalLetter = (str) =>{
 export const returnHome = (arr) =>{
   location.reload();
   arr = [];
+
 }
 
+export const filterForName = (name,arr,store) => {
+  let pokeName = name.toLowerCase()
+  name = ""
+  arr.pop()
 
+  store.pokemones.find(el => el.name === pokeName) 
+      ?   arr.push(store.pokemones.find(el => el.name === pokeName)) 
+      :   alert("El nombre introducido no existe");
+}
 
 

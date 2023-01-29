@@ -1,35 +1,26 @@
 import { defineStore } from "pinia";
-import axios from "axios";
-export const pokemonAxios = axios.create({
-  baseURL: "https://pokeapi.co/api/v2/pokemon/"
-})
+import { ref, reactive } from "vue";
+import fetchAll from "../services/apiPokemon";
 
-export const usePokemonsStore = defineStore({
-  id: "pokemones",
-  state: () => ({
-    pokemones: [],
-    pokemonId:[]
-  }),
-  actions: {
-     fetchPokemons() {
-        pokemonAxios.get("")
-        .then(resp => resp.data.results)
-        .catch((err) => {
-          console.log(err);
+export const usePokemonsStore = defineStore("pokemons",()=>{
+
+  const pokemones = reactive([]);
+  
+  function fetchPokemons() {
+        fetch("https://pokeapi.co/api/v2/pokemon")
+      .then( res=> res.json())
+      .then(data=>{
+        // console.log(data)
+        data.results.forEach((element,index)=>{
+          const pokemon ={
+            ...element,
+            index:index+1
+          }
+          pokemones.push(pokemon)
         })
-    },
+      })
 
-    fetchPokemon(name){
-      let pokemones=[]
+  }
 
-      pokemonAxios.get(name)
-       .then(resp =>{
-        pokemones.push(resp.data)
-       })
-       .catch((err) => {
-         console.log(err);
-        })
-        return pokemones
-    }
-  }, 
+  return{ pokemones , fetchPokemons}
 });
