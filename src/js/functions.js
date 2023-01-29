@@ -22,9 +22,9 @@ export const filterForName = (name,arr,store) =>{
   name = ""
   arr.pop()
 
-  store.pokemones.find(el => el.name === pokeName) 
-      ?   arr.push(store.pokemones.find(el => el.name === pokeName)) 
-      :   alert("El nombre introducido no existe");
+  // store.pokemones.find(el => el.name === pokeName) 
+  //     ?   arr.push(store.pokemones.find(el => el.name === pokeName)) 
+  //     :   alert("El nombre introducido no existe");
 }
 
 

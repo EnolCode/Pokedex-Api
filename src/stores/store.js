@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import fetchAll from "../services/apiPokemon";
 
 export const usePokemonsStore = defineStore({
   id: "pokemones",
@@ -7,15 +8,14 @@ export const usePokemonsStore = defineStore({
     pokemonId:[]
   }),
   actions: {
-    async fetchPokemons() {
-      await fetch("https://pokeapi.co/api/v2/pokemon/")
-        .then((response) => response.json())
-        .then((data) => {
-          this.pokemones = data.results;
+    fetchPokemons() {
+    fetchAll.get("")
+    .then( resp=> {
+              this.pokemones = resp.data.results;
         })
         .catch((err) => {
           console.log(err);
         })
     },
-  },
+  }, 
 });

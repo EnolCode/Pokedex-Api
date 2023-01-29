@@ -1,28 +1,26 @@
 <script setup>
-import Pokemon from '@/services/apiPokemon.js';
 import { ref, onBeforeMount, reactive, computed } from 'vue';
+import fetchAll from '@/services/apiPokemon.js';
 import CardPokemon from '@/components/CardPokemon.vue';
 import CardDetails from '@/components/CardDetails.vue';
 import { usePokemonsStore} from "@/stores/store.js";
 import { returnHome, filterForName,  } from "@/js/functions.js"
 
-
 const pokemonsStore = usePokemonsStore();
+let pokemons = ref([]);
 
-const service = new Pokemon([]);
-
-let pokemons = ref();
-
+onBeforeMount(async()=>{
+    fetchAll.get("")
+        .then( resp=> {
+            pokemons.value = resp.data.results;
+        })
+})
 
 let filterName = ref("");
 let filterType = ref("");
 let arrName = reactive([])
 let arrType = reactive([])
 
-onBeforeMount(async()=>{
-    pokemons.value = await service.fetchAll();
-    getPokemons();
-})
 
 const getPokemons = async (data) => {
     await pokemonsStore.fetchPokemons();
@@ -31,10 +29,11 @@ const getPokemons = async (data) => {
 const fetchUrl = async(url,el,pokeType) => {
     const resp = await fetch(url);
     const data = await resp.json();
+    let arr = []
     if(data.types[0].type.name === pokeType){
-        arrType.push(el)
-
-        }
+        arr.push(el)
+    }
+    arr
 }
 
 const filterForType = () =>{
