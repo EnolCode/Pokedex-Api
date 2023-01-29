@@ -4,7 +4,7 @@ import { ref, onBeforeMount, reactive, computed } from 'vue';
 import CardPokemon from '@/components/CardPokemon.vue';
 import CardDetails from '@/components/CardDetails.vue';
 import { usePokemonsStore} from "@/stores/store.js";
-import { returnHome, filterForName,  } from "@/js/functions.js"
+import { returnHome,   } from "@/js/functions.js"
 
 
 const pokemonsStore = usePokemonsStore();
@@ -22,7 +22,16 @@ let arrType = reactive([])
 onBeforeMount(async()=>{
     pokemons.value = await service.fetchAll();
     getPokemons();
+    // pokemonsStore.fetchPokemon(filterName.value);
 })
+
+ const filterForName = (filterName) => {
+    console.log(pokemonsStore.fetchPokemon(filterName.value))
+    // arrName.pop()
+//   pokemonAxios.get(name) 
+//       ?   arr.push(name) 
+//       :   alert("El nombre introducido no existe");
+}
 
 const getPokemons = async (data) => {
     await pokemonsStore.fetchPokemons();
@@ -33,11 +42,11 @@ const fetchUrl = async(url,el,pokeType) => {
     const data = await resp.json();
     if(data.types[0].type.name === pokeType){
         arrType.push(el)
-
-        }
+    }
 }
 
-const filterForType = () =>{
+const filterForType = () =>{ 
+    arrName = [];
     let pokeType = filterType.value.toLowerCase()
     filterType.value = "";
     pokemons.value.forEach(el=>{
@@ -57,7 +66,7 @@ const filterForType = () =>{
             <label for="search" class="search__title">Búsqueda por nombre </label>
             <div class="filter__container-search">
                 <input type="text" id="search" class="search__input" v-model="filterName">
-                <button class="search__button" @click="filterForName(filterName, arrName, pokemonsStore)" >
+                <button class="search__button" @click="filterForName" >
                     <i class="fa-solid fa-magnifying-glass icon-search"></i>
                 </button>
             </div>
@@ -84,9 +93,8 @@ const filterForType = () =>{
     <div class="container-cards">
         <div class="container-cards__wrap"> 
             <CardPokemon  v-show="arrName.length < 1 && arrType.length < 1" v-for="pokemon in pokemons" :key="pokemon.url" :url="pokemon.url" :name="pokemon.name" /> 
-            <CardDetails v-show="arrName.length > 0" v-for="pokemon in arrName" :key="pokemon.url" :url="pokemon.url" :name="pokemon.name" /> 
-            <CardPokemon  v-for="pokemon in arrType" :key="pokemon.url" :url="pokemon.url" :name="pokemon.name" /> 
-            
+            <CardDetails  v-show="arrType.length === 0" v-for="pokemon in arrName" :key="pokemon.url" :url="pokemon.url" :name="pokemon.name" /> 
+            <CardPokemon   v-for="pokemon in arrType" :key="pokemon.url" :url="pokemon.url" :name="pokemon.name" /> 
         </div> 
     </div>
     <footer class="footer">
