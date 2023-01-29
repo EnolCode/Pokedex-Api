@@ -38,6 +38,7 @@ const fetchUrl = async(url,el,pokeType) => {
 }
 
 const filterForType = () =>{
+    arrName=[];
     let pokeType = filterType.value.toLowerCase()
     filterType.value = "";
     pokemons.value.forEach(el=>{
